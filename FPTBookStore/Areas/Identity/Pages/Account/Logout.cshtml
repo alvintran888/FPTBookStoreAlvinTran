@@ -1,0 +1,28 @@
+﻿@page
+@model LogoutModel
+@{
+    ViewData["Title"] = "Log out";
+}
+
+<header>
+    <h1 style="text-align: center">@ViewData["Title"]</h1>
+    <h2 style="text-align: center">Are you sure to logout?</h2>
+    @{
+        if (User.Identity?.IsAuthenticated ?? false)
+        {
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+
+                <button type="submit" class="btn btn-success" style="text-align: center; margin-left: 45%">Yes</button>
+            </form>
+            <a asp-controller="Customer" asp-action="Index">
+                <button type="submit" class="btn btn-warning" style="text-align: center; margin-left: 45%">No</button>
+            </a>
+                
+
+        }
+        else
+        {
+            <p>You have successfully logged out of the application.</p>
+        }
+    }
+</header>

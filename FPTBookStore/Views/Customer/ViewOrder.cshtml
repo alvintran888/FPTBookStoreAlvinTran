@@ -1,0 +1,108 @@
+﻿@model List<Order>
+@{
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+@{
+    double t = 0;
+    @foreach (var item in Model)
+    {
+         t += item.TotalPrice;
+    }
+}
+ 
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body" style="background-color: beige;">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="table-responsive">
+                            <table class="table table-borderless table-centered mb-0">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Product Name</th>
+                                        <th>Unit Price</th>
+                                        <th>Quantity</th>
+                                        
+                                        <th style="width: 50px;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(var item in Model)
+                                    {
+                                    <tr>
+                                        <td>
+                                                @*<img src="~/img/@item.image" alt="product-image" title="product-image" class="rounded-circle" height="50" width="50">*@
+                                                <img src="@item.image" alt="product-image" title="product-image" class="rounded-circle" height="50" width="50">
+
+                                           @* <p class="m-0 d-inline-block align-middle font-16">
+                                                <a asp-controller="Customer" asp-action="Details" asp-route-Id="@item.ProductId" class="text-body">@item.ProductName</a>
+                                                <br>
+                                            </p>*@
+                                        </td>
+                                            <td>
+                                                @*@item.ProductName*@
+                                                <a asp-controller="Customer" asp-action="Details" asp-route-Id="@item.ProductId" class="text-body">@item.ProductName</a>
+
+                                            </td>
+                                        <td>
+                                            $@item.Price
+                                        </td>
+                                        <td>
+                                            @item.Quantity
+                                        </td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div> <!-- end table-responsive-->
+                        <!-- Add note input-->
+                       
+
+                        <!-- action buttons-->
+                        <div class="row mt-4">
+@*                            <div class="col-sm-6">
+                                <a asp-controller="Customer" asp-action="Index" class="btn text-muted d-none d-sm-inline-block btn-link font-weight-semibold">
+                                    <i class="mdi mdi-arrow-left" style="color: orange"></i> Back to Continue Shopping :)
+                                </a>
+                            </div>*@ <!-- end col -->
+                            <div class="col-sm-6">
+                                <div class="text-sm-right">
+                                </div>
+                            </div> <!-- end col -->
+                        </div> <!-- end row-->
+                    </div>
+                    <!-- end col -->
+
+                    <div class="col-lg-4">
+                        <div class="border p-3 mt-4 mt-lg-0 rounded">
+                            <h4 class="header-title mb-3" style="text-align: center; color: red">Order Summary</h4>
+
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+                                    <tbody>
+                                        <tr>
+                                            <th>Total :</th>
+                                            <th>$@t</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- end table-responsive -->
+                        </div>
+                        <div class="input-group mt-3">
+                        </div>
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+            </div> <!-- end card-body-->
+        </div> <!-- end card-->
+    </div> <!-- end col -->
+</div>
+@*Button*@
+<div class="">
+    <a asp-controller="Customer" asp-action="Index" class="btn btn-success" style="margin-left: 35%;">
+        <i class="mdi mdi-arrow-left" style="text-align: center"></i> Back to Continue Shopping :)
+    </a>
+</div>

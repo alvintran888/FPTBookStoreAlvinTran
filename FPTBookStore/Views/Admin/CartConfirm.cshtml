@@ -1,0 +1,28 @@
+﻿@model List<FPTBookStore.Models.CartItem>
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>Sản phẩm</th>
+        <th>Giá</th>
+        <th>Số lượng</th>
+        <th>Thành tiền</th>
+        <th></th>
+    </tr>
+    @foreach (var cartitem in Model)
+    {
+        var thanhtien = cartitem.Quantity * cartitem.product.Price;
+        
+
+        <tr>
+            <td>@cartitem.product.Name</td>
+            <td>@(cartitem.product.Price.ToString("n0"))</td>
+            <td><input asp-for="@cartitem.Quantity" id="@($"quantity-{cartitem.product.Id}")" readonly="readonly" /></td>
+            <td>@(thanhtien.ToString("n0"))</td>
+        </tr>
+    }
+    <tr>
+        
+    </tr>
+</table>
+<a asp-controller="Customer" asp-action="ClearCart">Reject</a>
+<a asp-controller="Admin" asp-action="Accept">Accept</a>

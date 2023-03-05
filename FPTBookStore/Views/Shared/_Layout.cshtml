@@ -1,0 +1,238 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>FPTBook Store Owner Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/images/favicon.ico">
+
+    <!-- App css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <link href="~/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/app.min.css" rel="stylesheet" type="text/css" id="light-style" />
+    <link href="~/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style" />
+    <link href="~/css/BookOwner.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+    <!-- Begin page -->
+    <div class="wrapper">
+        <!-- ========== Left Sidebar Start ========== -->
+        <div class="left-side-menu">
+            <!-- LOGO -->
+            <a asp-controller="Products" asp-action="Index" class="logo text-center logo-light">
+                <a class="logo text-center logo-light" asp-controller="Products" asp-action="Index">
+                    @*Left*@
+                    <span class="logo-lg">
+                        <img src="~/img/mainlogo.png" alt="LogoFPTBook" height="50" class="rounded-circle">
+                    </span>
+                    @*Right*@
+                    <span class="logo-sm">
+                        nav-link dropdown-toggle nav-user arrow-none mr-0
+                        <img src="~/img/mainlogo.png" alt="LogoFPTBook" height="16" class="rounded-circle">
+                    </span>
+                </a>
+            </a>
+
+            <!-- LOGO -->
+            <a asp-controller="Products" asp-action="Index" class="logo text-center logo-dark">
+                <span class="logo-lg">
+                    <img src="~/images/logo-dark.png" alt="" height="16">
+                </span>
+                <span class="logo-sm">
+                    <img src="~/images/logo_sm_dark.png" alt="" height="16">
+                </span>
+            </a>
+
+            <div class="h-100" id="left-side-menu-container" data-simplebar>
+                <!--- Sidemenu -->
+                <ul class="metismenu side-nav">
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Owner"))
+                    {
+                        <li class="side-nav-title side-nav-item">Store Owner Manager</li>
+                        <li class="side-nav-item">
+                            <a asp-controller="Products" asp-action="Index" class="side-nav-link">
+                                <i class="uil-home-alt"></i>
+                                <span> Products </span>
+                            </a>
+                        </li>
+
+                        <li class="side-nav-title side-nav-item"> </li>
+                        <li class="side-nav-item">
+                            <a asp-controller="Category" asp-action="Index" class="side-nav-link">
+                                <i class="uil-calender"></i>
+                                <span> Category </span>
+                            </a>
+                        </li>
+                        <li class="side-nav-title side-nav-item"> </li>
+                        <li class="side-nav-item">
+                            <a asp-controller="Admin" asp-action="ListOrder" class="side-nav-link">
+                                <i class="uil-align-justify"></i>
+                                <span> List order </span>
+                            </a>
+                        </li>
+                    }
+
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                    {
+                        <li class="side-nav-item">
+                            <a asp-controller="Admin" asp-action="Index" class="side-nav-link">
+                                <i class="uil-calender"></i>
+                                <span> Manager Category</span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a asp-controller="Admin" asp-action="Reset" class="side-nav-link">
+                                <i class="uil-calender"></i>
+                                <span> Reset Password </span>
+                            </a>
+                        </li>
+                    }
+
+
+
+                </ul>
+            </div>
+            <!-- Sidebar -left -->
+
+        </div>
+        <!-- Left Sidebar End -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+
+        <div class="content-page" style="background-color: antiquewhite">
+            <div class="content">
+                <!-- Topbar Start -->
+                <div class="navbar-custom" style="background-color: wheat">
+                    <ul class="list-unstyled topbar-right-menu float-right mb-0">
+                        @*Search *@
+                        <li class="dropdown notification-list d-lg-none">
+                            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="dripicons-search noti-icon"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
+                                <form class="p-3">
+                                    <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                                </form>
+                            </div>
+                        </li>
+
+                        @*Right NAV*@
+                        <li class="dropdown notification-list" style="background-color: wheat; color: red">
+                            <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                               aria-expanded="false" style="background-color: wheat">
+                                <span class="account-user-avatar">
+                                    <img src="~/img/mainlogo.png" alt="user-image" class="rounded-circle">
+                                </span>
+                                <span class="btn btn-success">
+                                    <span class="account-user-name">FPTBook Store Owner</span>
+                                    @*<span class="account-position"></span>*@
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                <!-- item-->
+                                <div class=" dropdown-header noti-title">
+                                    <h6 class="text-overflow m-0">Welcome to System!</h6>
+                                </div>
+
+                                <!-- item-->
+                                <a asp-controller="Products" asp-action="UserView" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-account-circle mr-1"></i>
+                                    <span>My Account</span>
+                                </a>
+
+                                <!-- item-->
+                               
+
+                                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                        <button type="submit" class="dropdown-item notify-item"> <i class="mdi mdi-logout mr-1"></i>Logout</button>
+                                    </form>
+                                }
+                            </div>
+                        </li>
+
+                    </ul>
+                    <button class="button-menu-mobile open-left disable-btn">
+                        <i class="mdi mdi-menu"></i>
+                    </button>
+                    <div class="app-search dropdown d-none d-lg-block">
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Owner"))
+                        {
+                            <form asp-controller="Products" asp-action="Search" method="post">
+                                <div class="input-group">
+                                    <input type="text" class="form-control dropdown-toggle" placeholder="Search..." name="Search"  id="top-search" style="border-radius:25px">
+                                    <span class="mdi mdi-magnify search-icon"></span>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit" style="border-radius:25px; margin-left:10px">Search</button>
+                                    </div>
+                                </div>
+                            </form>
+                        }
+
+                    </div>
+                </div>
+                <!-- end Topbar -->
+                <!-- Start Content-->
+                <div class="container-fluid" style="margin-bottom: 10px">
+                    @RenderBody()
+
+                </div> <!-- container -->
+
+            </div> <!-- content -->
+            <!-- Footer Start -->
+            <footer class="footer" style="background-color: darkblue">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6" >
+                            2023 © FPT BOOK STORE BY HUY, MINH, NGHIA | COPPY RIGHT
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- end Footer -->
+
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+
+
+    </div>
+    <!-- END wrapper -->
+    <!-- Right Sidebar -->
+    <!-- /Right-bar -->
+    <!-- bundle -->
+    <script src="~/js/vendor.min.js"></script>
+    <script src="~/js/app.min.js"></script>
+    @*<script src="~/Template/js/jquery.min.js"></script>
+    <script src="~/Template/js/popper.min.js"></script>
+    <script src="~/Template/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Template/js/jquery-3.0.0.min.js"></script>
+    <script src="~/Template/js/plugin.js"></script>
+    <!-- sidebar -->
+    <script src="~/Template/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/Template/js/custom.js"></script>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>*@
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

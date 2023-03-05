@@ -1,0 +1,144 @@
+﻿@model ApplicationUser
+<div class="row">
+    @*Left*@
+    <div class="col-xl-4 col-lg-5" style="background-color: aquamarine">
+        <div class="card text-center">
+            <div class="card-body">
+                <img src="@ViewBag.Img" class="img-thumbnail" alt="profile-image">
+
+                <h4 class="mb-0 mt-2">@ViewBag.Fullname</h4>
+                @*<p class="text-muted font-14">Founder</p>*@
+
+                <button type="button" class="btn btn-success btn-sm mb-2">Follow</button>
+                <button type="button" class="btn btn-danger btn-sm mb-2">Message</button>
+
+                <div class="text-left mt-3">
+                    <h4 class="font-13 text-uppercase">About Me :</h4>
+                    <p class="text-muted font-13 mb-3">
+                        Hi I'm @ViewBag.Fullname, Wellcome to FPT Book Store.
+                    </p>
+                    <p class="text-muted mb-2 font-13">
+                        <strong>Full Name :</strong> <span class="ml-2">
+                            @ViewBag.Fullname
+                        </span>
+                    </p>
+
+                    <p class="text-muted mb-2 font-13">
+                        <strong>Mobile :</strong><span class="ml-2">
+                            (+84)
+                            123 456 789
+                        </span>
+                    </p>
+
+                    <p class="text-muted mb-2 font-13"><strong>Email :</strong> <span class="ml-2 ">@ViewBag.Email</span></p>
+                    <p class="text-muted mb-2 font-13"><strong>Username :</strong> <span class="ml-2 ">@ViewBag.UserName</span></p>
+                    <p class="text-muted mb-1 font-13"><strong>Date of Birth :</strong> <span class="ml-2">@ViewBag.DoB</span></p>
+                    <p class="text-muted mb-1 font-13"><strong>Location :</strong> <span class="ml-2">@ViewBag.Address</span></p>
+                </div>
+
+                <ul class="social-list list-inline mt-3 mb-0">
+                    <li class="list-inline-item">
+                        <a href="javascript: void(0);" class="social-list-item border-primary text-primary"><i class="mdi mdi-facebook"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="javascript: void(0);" class="social-list-item border-danger text-danger"><i class="mdi mdi-google"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="javascript: void(0);" class="social-list-item border-info text-info"><i class="mdi mdi-twitter"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="javascript: void(0);" class="social-list-item border-secondary text-secondary"><i class="mdi mdi-github-circle"></i></a>
+                    </li>
+                </ul>
+            </div> <!-- end card-body -->
+        </div> <!-- end card -->
+        <!-- Messages-->
+        <div class="card">
+            <!-- end card-body-->
+        </div> <!-- end card-->
+
+    </div> <!-- end col-->
+
+                                                   <!-- Right -->
+    <div class="col-xl-8 col-lg-7" style="background-color: aquamarine">
+        <div class="card">
+            <div class="card-body">
+                <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
+                    <li class="nav-item">
+                        <a href="#aboutme" data-toggle="tab" aria-expanded="false" class="nav-link rounded-0 active">
+                            History Order
+                        </a>
+                    </li>
+
+
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="aboutme">
+
+                        <h5 class="text-uppercase">
+                            <i class="mdi mdi-briefcase mr-1"></i>
+                            Order
+                        </h5>
+
+                        <div class="timeline-alt pb-0">
+                            <div class="timeline-item">
+                                <i class="mdi mdi-circle bg-info-lighten text-info timeline-icon"></i>
+                                <div class="timeline-item-info">
+                                    <h5 class="mt-0 mb-1">Total Order in 2020</h5>
+                                    @*<p class="font-14">websitename.com <span class="ml-2 font-12">Year: 2015 - 18</span></p>*@
+                                    <p class="text-muted mt-2 mb-0 pb-3">
+                                        In 2020, the customer bought 200 candies.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <i class="mdi mdi-circle bg-primary-lighten text-primary timeline-icon"></i>
+                                <div class="timeline-item-info">
+                                    <h5 class="mt-0 mb-1">Total Order in 2021</h5>
+                                    @*<p class="font-14">Software Inc. <span class="ml-2 font-12">Year: 2012 - 15</span></p>*@
+                                    <p class="text-muted mt-2 mb-0 pb-3">
+                                        In 2021, the customer bought 20 phones.
+                                    </p>
+
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <i class="mdi mdi-circle bg-info-lighten text-info timeline-icon"></i>
+                                <div class="timeline-item-info">
+                                    <h5 class="mt-0 mb-1">Total Order in 2022</h5>
+                                    @*<p class="font-14">Coderthemes Design LLP <span class="ml-2 font-12">Year: 2010 - 12</span></p>*@
+                                    <p class="text-muted mt-2 mb-0 pb-2">
+                                        In 2022, the customer bought 20 laptops.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <i class="mdi mdi-circle bg-info-lighten text-info timeline-icon"></i>
+                                <div class="timeline-item-info">
+                                    <h5 class="mt-0 mb-1">Total Order in 2023 </h5>
+                                    @*<p class="font-14">Coderthemes Design LLP <span class="ml-2 font-12">Year: 2010 - 12</span></p>*@
+                                    <p class="text-muted mt-2 mb-0 pb-2">
+                                        In 2023, the customer bought 20 ipods.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- end timeline -->
+
+
+
+
+                    </div> <!-- end tab-pane -->
+                    <!-- end about me section content -->
+                    <!-- end timeline content-->
+                    <!-- end settings content-->
+
+                </div> <!-- end tab-content -->
+            </div> <!-- end card body -->
+        </div> <!-- end card -->
+    </div> <!-- end col -->
+</div>

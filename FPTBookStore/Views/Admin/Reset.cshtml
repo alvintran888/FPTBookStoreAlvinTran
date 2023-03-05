@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Reset password";
+}
+
+<h1 style="color: black;text-align: center">
+    Reset password
+</h1>
+    @if (TempData["Message"] != null)
+    {
+        <center style="font-size: 200%;">
+            <span class="badge badge-danger" >@TempData["Message"]</span>
+    </center>
+    }
+    else
+    {
+        <p></p>
+    }
+    <h2>Wellcome to Admin Dasboard!</h2>
+@if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+{
+    <table class="table table-hover">
+        <thead>
+        <tr style="background-color: chartreuse">
+                <th>
+                    ID
+                </th>
+
+                <th>
+                    Email
+                </th>
+                <th>
+                    UserName
+                </th>
+                <th>
+                    Password
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Id
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.UserName
+                    </td>
+
+                    <td>
+                        *********
+                    </td>
+                    @for (int i = 0; i < ViewBag.Roles.Count; i++)
+                    {
+                        if (ViewBag.Roles[i].Id == "O")
+                        {
+                            <td>
+                                <a asp-controller="Admin" asp-action="Edit" class="action-icon" asp-route-id="@item.Id"> <i class="mdi mdi-square-edit-outline "></i></a>
+                            </td>
+
+                        }
+                    }
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+
+
